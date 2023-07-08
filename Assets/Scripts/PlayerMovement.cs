@@ -19,10 +19,17 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         nextPosition = gameObject.transform.position;
+        Invoke("Death", 5f); // autodestroy per test
+    }
+
+    private void Death()
+    {
+        GameObject.FindObjectOfType<PlayerPossess>().OnRemoveFruit(gameObject);
     }
 
     private void Update()
     {
+        // movimento del player nelle 4 direzioni
         if (Input.GetKeyDown(KeyCode.UpArrow) & !isMoving)
         {
             isMoving = true;
@@ -51,7 +58,10 @@ public class PlayerMovement : MonoBehaviour
             anim.SetInteger("direction", 3);
         }
 
+        // lerp della posizione 
         transform.position = Vector2.Lerp(transform.position, nextPosition, velocity * Time.deltaTime);
+      
+        // arrotondamento della posizione e fine movimento
         if (Vector2.Distance(transform.position, nextPosition) < 0.01f)
         {
             transform.position = nextPosition;

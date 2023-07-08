@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class PlayerPossess : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerPossess : MonoBehaviour
     private GameObject target;
 
     public GameObject targetPrefab;
+
+    public UIDocument defeathScreenRef;
 
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class PlayerPossess : MonoBehaviour
         {
             Destroy(self);
             Destroy(target);
+            Instantiate<UIDocument>(defeathScreenRef);
             Debug.Log("End Game!");
             return;
         }
@@ -55,10 +59,10 @@ public class PlayerPossess : MonoBehaviour
         if (self == possessedFruit)
         {
             GameObject newPossessedFruit = GetNextFruit(self);
-            if(possessedFruit)
+            if (possessedFruit)
                 OnPossess(possessedFruit);
         }
-       
+
         Destroy(self);
     }
 

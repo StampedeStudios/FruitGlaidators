@@ -4063,6 +4063,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
+  - first: {x: 6, y: 5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 8
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 7, y: 5, z: 0}
     second:
       serializedVersion: 2
@@ -4757,7 +4767,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 224
     m_Data: {fileID: 11400000, guid: 16c145a2fac4006428a5e111267f10c4, type: 2}
-  - m_RefCount: 191
+  - m_RefCount: 192
     m_Data: {fileID: 11400000, guid: fad8b5b2a8747684489633c5fcc6742a, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 144
@@ -4776,7 +4786,7 @@ Tilemap:
     m_Data: {fileID: -1360778420, guid: 7d9d090c6de08cd4ba091460f5fa8a99, type: 3}
   - m_RefCount: 14
     m_Data: {fileID: 1508749015, guid: 7d9d090c6de08cd4ba091460f5fa8a99, type: 3}
-  - m_RefCount: 191
+  - m_RefCount: 192
     m_Data: {fileID: 1598577847, guid: ecfa335a1ad8a034b9f947c1a7b4d2e9, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 604107403, guid: 7d9d090c6de08cd4ba091460f5fa8a99, type: 3}
@@ -4789,7 +4799,7 @@ Tilemap:
   - m_RefCount: 6
     m_Data: {fileID: 1054653395, guid: 7d9d090c6de08cd4ba091460f5fa8a99, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 415
+  - m_RefCount: 416
     m_Data:
       e00: 1
       e01: 0
@@ -4808,7 +4818,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 415
+  - m_RefCount: 416
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -7109,6 +7119,10 @@ PrefabInstance:
       propertyPath: possessedFruit
       value: 
       objectReference: {fileID: 1582300770}
+    - target: {fileID: 3625837195276952056, guid: 682fb652fea408644b7dbccd9d3ea19f, type: 3}
+      propertyPath: defeathScreenRef
+      value: 
+      objectReference: {fileID: 7536310595296290389, guid: 28718d14f517f2f4a860e145dc8ba114, type: 3}
     - target: {fileID: 3625837195276952057, guid: 682fb652fea408644b7dbccd9d3ea19f, type: 3}
       propertyPath: m_Name
       value: GameInstance

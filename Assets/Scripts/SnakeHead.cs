@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SnakeHead : MonoBehaviour
 {
     private List<SnakePiece> snakePieces;
     public GameObject snakePiecePrefab;
+
+    public UIDocument victoryScreenRef;
 
     private GameObject targetFruit;
 
@@ -95,7 +98,7 @@ public class SnakeHead : MonoBehaviour
 
         if (other.tag == "Snake")
         {
-            Debug.Log("Snake death");
+            Instantiate<UIDocument>(victoryScreenRef);
         }
     }
 

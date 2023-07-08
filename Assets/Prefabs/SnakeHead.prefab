@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakePiecePrefab: {fileID: 8170197292621776206, guid: e0ca1bfc5e883904085934132c47ac54, type: 3}
+  victoryScreenRef: {fileID: 5705937812600841771, guid: 35be9d72e0695cc4986cffb4c7a93bd8, type: 3}
   numberPieces: 3
-  animLenght: 0.5
 --- !u!95 &-4842144799990797673
 Animator:
   serializedVersion: 5

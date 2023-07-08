@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Fruit
   - Wall
+  - Snake
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

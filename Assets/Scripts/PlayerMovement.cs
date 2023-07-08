@@ -2,34 +2,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float velocity = 10f;
+    private float animLenght = 0.15f;
     private bool isMoving = false;
 
     private Vector2 nextPosition;
+    private Vector2 currentPosition;
 
     private float movingStep = 1f;
 
     private Animator anim;
 
+    private float elapsedTime;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        nextPosition = gameObject.transform.position;
-        Invoke("Death", 5f); // autodestroy per test
-    }
-
-    private void Death()
-    {
-        anim.SetTrigger("isDead");
-    }
-
-    private void Destroy()
-    {
-        GameObject.FindObjectOfType<PlayerPossess>().OnRemoveFruit(gameObject);
     }
 
     private void Update()
@@ -37,42 +24,72 @@ public class PlayerMovement : MonoBehaviour
         // movimento del player nelle 4 direzioni
         if (Input.GetKeyDown(KeyCode.UpArrow) & !isMoving)
         {
+            elapsedTime = 0;
+            currentPosition = transform.position;
+            nextPosition = currentPosition + Vector2.up * movingStep;
+
+            if (IsObstructed())
+                return;
+
             isMoving = true;
-            nextPosition += Vector2.up * movingStep;
             anim.SetTrigger("isJumping");
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) & !isMoving)
         {
+            elapsedTime = 0;
+            currentPosition = transform.position;
+            nextPosition = currentPosition + Vector2.down * movingStep;
+
+            if (IsObstructed())
+                return;
+
             isMoving = true;
-            nextPosition += Vector2.down * movingStep;
             anim.SetTrigger("isJumping");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) & !isMoving)
         {
+            elapsedTime = 0;
+            currentPosition = transform.position;
+            nextPosition = currentPosition + Vector2.left * movingStep;
+
+            if (IsObstructed())
+                return;
+
             isMoving = true;
-            nextPosition += Vector2.left * movingStep;
             anim.SetTrigger("isJumping");
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) & !isMoving)
         {
+            elapsedTime = 0;
+            currentPosition = transform.position;
+            nextPosition = currentPosition + Vector2.right * movingStep;
+
+            if (IsObstructed())
+                return;
+
             isMoving = true;
-            nextPosition += Vector2.right * movingStep;
             anim.SetTrigger("isJumping");
         }
 
-        // lerp della posizione 
-        transform.position = Vector2.Lerp(transform.position, nextPosition, velocity * Time.deltaTime);
+        elapsedTime = Mathf.Clamp(elapsedTime + Time.deltaTime, 0f, animLenght);
 
-        // arrotondamento della posizione e fine movimento
-        if (Vector2.Distance(transform.position, nextPosition) < 0.1f)
+        if (isMoving)
+        {
+            // lerp della posizione 
+            transform.position = Vector2.Lerp(currentPosition, nextPosition, elapsedTime / animLenght);
+        }
+        if (elapsedTime == animLenght)
         {
             isMoving = false;
-            transform.position = nextPosition;
         }
+    }
 
+    private bool IsObstructed()
+    {
+        return Physics2D.Linecast(currentPosition, nextPosition, 3);
     }
 
 }

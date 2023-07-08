@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Death()
     {
-        anim.SetBool("isDead", true);
+        anim.SetTrigger("isDead");
     }
 
     private void Destroy()
@@ -39,28 +39,28 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = true;
             nextPosition += Vector2.up * movingStep;
-            anim.SetBool("isJumping", isMoving);
+            anim.SetTrigger("isJumping");
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) & !isMoving)
         {
             isMoving = true;
             nextPosition += Vector2.down * movingStep;
-            anim.SetBool("isJumping", isMoving);
+            anim.SetTrigger("isJumping");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) & !isMoving)
         {
             isMoving = true;
             nextPosition += Vector2.left * movingStep;
-            anim.SetBool("isJumping", isMoving);
+            anim.SetTrigger("isJumping");
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) & !isMoving)
         {
             isMoving = true;
             nextPosition += Vector2.right * movingStep;
-            anim.SetBool("isJumping", isMoving);
+            anim.SetTrigger("isJumping");
         }
 
         // lerp della posizione 
@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = false;
             transform.position = nextPosition;
-            anim.SetBool("isJumping", isMoving);
         }
 
     }

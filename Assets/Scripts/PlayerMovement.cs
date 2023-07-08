@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Death()
     {
+        anim.SetBool("isDead", true);
+    }
+
+    private void Destroy()
+    {
         GameObject.FindObjectOfType<PlayerPossess>().OnRemoveFruit(gameObject);
     }
 
@@ -70,6 +75,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
 
 }

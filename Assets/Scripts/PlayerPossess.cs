@@ -39,8 +39,8 @@ public class PlayerPossess : MonoBehaviour
         if (fruits.Contains(self))
             fruits.Remove(self);
 
-        // aggiungo nuovi pezzi al serpente
-        snake.IncrementSnakePiece(1, 0.05f);
+        // aggiungo nuovi pezzi al serpente e velocita
+        snake.IncrementSnakeStats(1, 0.05f);
 
         // termino se non ci sono piu frutti
         if (fruits.Count == 0)
@@ -52,16 +52,14 @@ public class PlayerPossess : MonoBehaviour
         }
 
         // ricerco nuovo frutto e distruggo il precedente
-        if (GetNextFruit(self))
+        if (self == possessedFruit)
         {
-            Destroy(self);
-            OnPossess(possessedFruit);
+            GameObject newPossessedFruit = GetNextFruit(self);
+            if(possessedFruit)
+                OnPossess(possessedFruit);
         }
-        else
-        {
-            Destroy(self);
-            Debug.Log("End Game!");
-        }
+       
+        Destroy(self);
     }
 
     private void OnPossess(GameObject newFruit)
@@ -91,7 +89,7 @@ public class PlayerPossess : MonoBehaviour
 
     }
 
-    bool GetNextFruit(GameObject lastFruit)
+    GameObject GetNextFruit(GameObject lastFruit)
     {
         // ricerco nuovo frutto nella lista scegliendo quello piu vicino
         float minDistance = 1000f;
@@ -109,11 +107,7 @@ public class PlayerPossess : MonoBehaviour
                 possessedFruit = item;
             }
         }
-
-        if (possessedFruit)
-            return true;
-        else
-            return true;
+        return possessedFruit;
     }
 
 

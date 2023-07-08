@@ -99,7 +99,7 @@ public class SnakeHead : MonoBehaviour
         }
     }
 
-    public void IncrementSnakePiece(int incrementPieces, float decrementAnimTime)
+    public void IncrementSnakeStats(int incrementPieces, float decrementAnimTime)
     {
         for (int i = 0; i < incrementPieces; i++)
         {

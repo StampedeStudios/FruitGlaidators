@@ -4,6 +4,10 @@ public class HealthHandler : MonoBehaviour
 {
     public void Death()
     {
+        // rimuovo la collisione dal frutto mangiato
+        GetComponent<Collider2D>().enabled = false;
+        
+        // attivo l'animazione di morte
         GetComponent<Animator>().SetTrigger("isDead");
     }
 

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIElements/UIStyle.uss?fileID=7433441132597879392&amp;guid=4db63e8e6b616b9448e584fb3a4636d9&amp;type=3#UIStyle" />
+    <ui:VisualElement name="MiddleSection" style="align-items: center; justify-content: center; height: 100%;">
+        <ui:VisualElement name="Container" style="justify-content: center; align-items: stretch;">
+            <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayBtn" class="menu-button" style="width: 100%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,21 @@
+.menu-button {
+    text-shadow: 1px 0 0 rgb(0, 0, 0);
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: rgb(255, 255, 255);
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 5px;
+}
+
+.menu-button:hover {
+    background-color: rgb(58, 121, 153);
+    border-color: rgb(242, 242, 242);
+    transition: all 500ms ease;
+}
+
+.menu-button:active {
+    background-color: rgba(0, 0, 0, 0.25);
+}

@@ -68,6 +68,9 @@ public class PlayerPossess : MonoBehaviour
 
     public void OnRemoveFruit(GameObject self)
     {
+        if (self == companionFruit)
+            Destroy(companionTarget);
+
         // rimuovo frutto dalla lista
         if (fruits.Contains(self))
             fruits.Remove(self);

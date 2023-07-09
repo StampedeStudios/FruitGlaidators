@@ -157,6 +157,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &148462426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4362881675557649775, guid: 6154a520323d94b46b7e1acfc7b3ef41, type: 3}
+  m_PrefabInstance: {fileID: 706530699}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &272030141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -340,10 +345,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 140128237}
     m_Modifications:
-    - target: {fileID: 2737815929021788626, guid: 6154a520323d94b46b7e1acfc7b3ef41, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4362881675557649775, guid: 6154a520323d94b46b7e1acfc7b3ef41, type: 3}
       propertyPath: m_Name
       value: Cherry
@@ -2341,18 +2342,6 @@ PrefabInstance:
     - target: {fileID: 5839275405873552306, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
       propertyPath: m_Name
       value: FinalTile
-      objectReference: {fileID: 0}
-    - target: {fileID: 8206830709405489545, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8206830709405489545, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8206830709405489545, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 2013177665
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
@@ -7034,7 +7023,7 @@ PrefabInstance:
     - target: {fileID: 3625837195276952056, guid: 682fb652fea408644b7dbccd9d3ea19f, type: 3}
       propertyPath: companionFruit
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 148462426}
     - target: {fileID: 3625837195276952056, guid: 682fb652fea408644b7dbccd9d3ea19f, type: 3}
       propertyPath: possessedFruit
       value: 
@@ -7046,7 +7035,7 @@ PrefabInstance:
     - target: {fileID: 3625837195276952056, guid: 682fb652fea408644b7dbccd9d3ea19f, type: 3}
       propertyPath: companionTargetPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2995629636307877230, guid: ac634e8b2dc5b794aa534349b7728fc0, type: 3}
     - target: {fileID: 3625837195276952057, guid: 682fb652fea408644b7dbccd9d3ea19f, type: 3}
       propertyPath: m_Name
       value: GameInstance

@@ -14,7 +14,7 @@ public class PlayerPossess : MonoBehaviour
 
     public GameObject targetPrefab;
 
-    public UIDocument defeathScreenRef;
+    public UIDocument defeatScreenRef;
 
     private void Awake()
     {
@@ -57,8 +57,7 @@ public class PlayerPossess : MonoBehaviour
         {
             Destroy(self);
             Destroy(target);
-            Instantiate<UIDocument>(defeathScreenRef);
-            Debug.Log("End Game!");
+            Instantiate<UIDocument>(defeatScreenRef);
             return;
         }
 

@@ -112,10 +112,15 @@ public class SnakeHead : MonoBehaviour
 
         if (other.tag == "Snake")
         {
-            isMoving=false;
-            targetFruit=null;
-            Instantiate<UIDocument>(victoryScreenRef);
+            SnakeDeath();
+            GameObject.FindObjectOfType<PlayerPossess>().SetVictory(VictoryEvent.SnakeDeath);
         }
+    }
+
+    public void SnakeDeath()
+    {
+        isMoving = false;
+        targetFruit = null;
     }
 
     public void IncrementSnakeStats(int incrementPieces, float decrementAnimTime)

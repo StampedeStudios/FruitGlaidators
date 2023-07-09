@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Snake
   - FakeFruit
+  - Arrive
   layers:
   - Default
   - TransparentFX

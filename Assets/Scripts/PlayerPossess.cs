@@ -20,6 +20,9 @@ public class PlayerPossess : MonoBehaviour
     public GameObject companionTargetPrefab;
 
     public UIDocument defeatScreenRef;
+    public UIDocument victoryScreenRef;
+
+
 
     private void Awake()
     {
@@ -36,7 +39,7 @@ public class PlayerPossess : MonoBehaviour
         if (companionFruit)
         {
             fruits.Remove(companionFruit);
-            companionFruit.GetComponent<PlayerMovement>().enabled = true;
+            companionFruit.GetComponent<PlayerMovement>().TogglePossession(true);
 
             if (!companionTarget)
             {
@@ -51,12 +54,12 @@ public class PlayerPossess : MonoBehaviour
         if (target & possessedFruit)
             target.transform.position = possessedFruit.transform.position;
 
-        if (companionTarget)
+        if (companionTarget & companionFruit)
             companionTarget.transform.position = companionFruit.transform.position;
 
         if (Input.GetKeyDown(KeyCode.Space) & fruits.Count > 1)
         {
-            possessedFruit.GetComponent<PlayerMovement>().enabled = false;
+            possessedFruit.GetComponent<PlayerMovement>().TogglePossession(false);
             GameObject newPossessedFruit = GetNextFruit(possessedFruit);
             if (newPossessedFruit)
                 OnPossess(newPossessedFruit);
@@ -92,6 +95,37 @@ public class PlayerPossess : MonoBehaviour
         Destroy(self);
     }
 
+    public void SetVictory(VictoryEvent victoryEvent)
+    {
+        switch (victoryEvent)
+        {
+            case VictoryEvent.SnakeDeath:
+                UnpossessFruits();
+                Instantiate<UIDocument>(victoryScreenRef);
+                return;
+
+            case VictoryEvent.FinalTile:
+                UnpossessFruits();
+                snake.SnakeDeath();
+                Instantiate<UIDocument>(victoryScreenRef);
+                return;
+
+
+            default: return;
+        }
+
+
+    }
+
+    public void UnpossessFruits()
+    {
+        if (companionFruit)
+            companionFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+
+        if (possessedFruit)
+            possessedFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+    }
+
     private void OnPossess(GameObject newFruit)
     {
         possessedFruit = newFruit;
@@ -107,7 +141,7 @@ public class PlayerPossess : MonoBehaviour
 
         if (playerMovement)
         {
-            playerMovement.enabled = true;
+            playerMovement.TogglePossession(true);
             snake.SetNewTargetFruit(possessedFruit);
         }
 

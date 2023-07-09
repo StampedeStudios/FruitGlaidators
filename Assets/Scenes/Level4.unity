@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective
       objectReference: {fileID: 0}
+    - target: {fileID: 4819093620347100851, guid: 6c6dd8019a1baf5458a22a4b1a299381, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 2800000, guid: 8d805a2653565d84687429b02044dfec, type: 3}
     - target: {fileID: 9021230849215356966, guid: 6c6dd8019a1baf5458a22a4b1a299381, type: 3}
       propertyPath: m_RootOrder
       value: 5

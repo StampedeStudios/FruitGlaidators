@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = true;
                     anim.SetTrigger("isJumping");
                 }
+                nextPosition = RoundPosition(nextPosition);
                 Move();
                 return;
 
@@ -118,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = true;
                     anim.SetTrigger("isJumping");
                 }
+                nextPosition = RoundPosition(nextPosition);
                 Move();
                 return;
 
@@ -125,6 +127,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private Vector2 RoundPosition(Vector2 position)
+    {
+        Vector2 roundedPos = Vector2.zero;
+        roundedPos.x = Mathf.RoundToInt(position.x);
+        roundedPos.y = Mathf.RoundToInt(position.y);
+
+        return roundedPos;
+    }
     public void UpdateCompanion(Vector2 direction)
     {
         elapsedTime = 0;

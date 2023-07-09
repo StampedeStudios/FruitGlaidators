@@ -9,6 +9,7 @@ TagManager:
   - Snake
   - FakeFruit
   - Arrive
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Door
   - 
   - 
   - 

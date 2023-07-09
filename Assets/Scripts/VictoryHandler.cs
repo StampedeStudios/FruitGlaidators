@@ -18,7 +18,14 @@ public class VictoryHandler : MonoBehaviour
         Button menuButton = root.Q<Button>("NextLvlBtn");
         menuButton.RegisterCallback<ClickEvent>(ev =>
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);
+            if (SceneManager.GetSceneByName(nextSceneName).IsValid())
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);
+            }
+            else
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
+            }
         });
 
     }

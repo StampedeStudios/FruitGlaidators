@@ -14,64 +14,74 @@ public class PlayerMovement : MonoBehaviour
 
     private float elapsedTime;
 
+    private AudioSource audioSource;
+
+    private bool isPossessed = false;
+
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        // movimento del player nelle 4 direzioni
-        if (Input.GetKeyDown(KeyCode.UpArrow) & !isMoving)
+        if (isPossessed)
         {
-            elapsedTime = 0;
-            currentPosition = transform.position;
-            nextPosition = currentPosition + Vector2.up * movingStep;
 
-            if (IsObstructed())
-                return;
+            // movimento del player nelle 4 direzioni
+            if (Input.GetKeyDown(KeyCode.UpArrow) & !isMoving)
+            {
+                elapsedTime = 0;
+                currentPosition = transform.position;
+                nextPosition = currentPosition + Vector2.up * movingStep;
 
-            isMoving = true;
-            anim.SetTrigger("isJumping");
-        }
+                if (IsObstructed())
+                    return;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) & !isMoving)
-        {
-            elapsedTime = 0;
-            currentPosition = transform.position;
-            nextPosition = currentPosition + Vector2.down * movingStep;
+                isMoving = true;
+                anim.SetTrigger("isJumping");
+            }
 
-            if (IsObstructed())
-                return;
+            if (Input.GetKeyDown(KeyCode.DownArrow) & !isMoving)
+            {
+                elapsedTime = 0;
+                currentPosition = transform.position;
+                nextPosition = currentPosition + Vector2.down * movingStep;
 
-            isMoving = true;
-            anim.SetTrigger("isJumping");
-        }
+                if (IsObstructed())
+                    return;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) & !isMoving)
-        {
-            elapsedTime = 0;
-            currentPosition = transform.position;
-            nextPosition = currentPosition + Vector2.left * movingStep;
+                isMoving = true;
+                anim.SetTrigger("isJumping");
+            }
 
-            if (IsObstructed())
-                return;
+            if (Input.GetKeyDown(KeyCode.LeftArrow) & !isMoving)
+            {
+                elapsedTime = 0;
+                currentPosition = transform.position;
+                nextPosition = currentPosition + Vector2.left * movingStep;
 
-            isMoving = true;
-            anim.SetTrigger("isJumping");
-        }
+                if (IsObstructed())
+                    return;
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) & !isMoving)
-        {
-            elapsedTime = 0;
-            currentPosition = transform.position;
-            nextPosition = currentPosition + Vector2.right * movingStep;
+                isMoving = true;
+                anim.SetTrigger("isJumping");
+            }
 
-            if (IsObstructed())
-                return;
+            if (Input.GetKeyDown(KeyCode.RightArrow) & !isMoving)
+            {
+                elapsedTime = 0;
+                currentPosition = transform.position;
+                nextPosition = currentPosition + Vector2.right * movingStep;
 
-            isMoving = true;
-            anim.SetTrigger("isJumping");
+                if (IsObstructed())
+                    return;
+
+                isMoving = true;
+                anim.SetTrigger("isJumping");
+            }
         }
 
         elapsedTime = Mathf.Clamp(elapsedTime + Time.deltaTime, 0f, animLenght);
@@ -90,6 +100,16 @@ public class PlayerMovement : MonoBehaviour
     private bool IsObstructed()
     {
         return Physics2D.Linecast(currentPosition, nextPosition, 3);
+    }
+
+    private void PlaySound()
+    {
+        audioSource.Play();
+    }
+
+    public void TogglePossession(bool possessActive)
+    {
+        isPossessed = possessActive;
     }
 
 }

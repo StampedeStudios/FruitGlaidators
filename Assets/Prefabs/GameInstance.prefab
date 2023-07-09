@@ -45,4 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possessedFruit: {fileID: 0}
+  companionFruit: {fileID: 0}
   targetPrefab: {fileID: 3450974598933993221, guid: da848e41693b90a40a75ac2ba9b8bb15, type: 3}
+  companionTargetPrefab: {fileID: 2995629636307877230, guid: ac634e8b2dc5b794aa534349b7728fc0, type: 3}
+  defeatScreenRef: {fileID: 7536310595296290389, guid: 28718d14f517f2f4a860e145dc8ba114, type: 3}
+  victoryScreenRef: {fileID: 5705937812600841771, guid: 35be9d72e0695cc4986cffb4c7a93bd8, type: 3}

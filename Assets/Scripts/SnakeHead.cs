@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SnakeHead : MonoBehaviour
 {
     private List<SnakePiece> snakePieces;
     public GameObject snakePiecePrefab;
+
+    public UIDocument victoryScreenRef;
 
     private GameObject targetFruit;
 
@@ -25,10 +28,12 @@ public class SnakeHead : MonoBehaviour
 
     private float animLenght = 0.5f;
 
+    private AudioSource audioSource;
 
     private void Awake()
     {
         snakePieces = new List<SnakePiece>();
+        audioSource = GetComponent<AudioSource>();
 
         GameObject go = gameObject;
         if (snakePiecePrefab)
@@ -90,13 +95,32 @@ public class SnakeHead : MonoBehaviour
         {
             HealthHandler fruitHealth = other.gameObject.GetComponent<HealthHandler>();
             if (fruitHealth)
+            {
                 fruitHealth.Death();
+                audioSource.Play();
+            }
+        }
+
+        if (other.tag == "FakeFruit")
+        {
+            FakeFruit fakeFruit = other.gameObject.GetComponent<FakeFruit>();
+            if (fakeFruit)
+            {
+                fakeFruit.Death();
+            }
         }
 
         if (other.tag == "Snake")
         {
-            Debug.Log("Snake death");
+            SnakeDeath();
+            GameObject.FindObjectOfType<PlayerPossess>().SetVictory(VictoryEvent.SnakeDeath);
         }
+    }
+
+    public void SnakeDeath()
+    {
+        isMoving = false;
+        targetFruit = null;
     }
 
     public void IncrementSnakeStats(int incrementPieces, float decrementAnimTime)
@@ -152,8 +176,6 @@ public class SnakeHead : MonoBehaviour
     {
         float evaluateDistance = 0;
         float prevDistance = 1000;
-
-
 
         Vector2 evaluatePosition;
 

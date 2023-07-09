@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class PlayerPossess : MonoBehaviour
 {
@@ -7,11 +8,21 @@ public class PlayerPossess : MonoBehaviour
 
     public GameObject possessedFruit;
 
+    public GameObject companionFruit;
+
     private SnakeHead snake;
 
     private GameObject target;
 
+    private GameObject companionTarget;
+
     public GameObject targetPrefab;
+    public GameObject companionTargetPrefab;
+
+    public UIDocument defeatScreenRef;
+    public UIDocument victoryScreenRef;
+
+
 
     private void Awake()
     {
@@ -24,6 +35,18 @@ public class PlayerPossess : MonoBehaviour
     {
         // possesso frutto di partenza
         OnPossess(possessedFruit);
+
+        if (companionFruit)
+        {
+            fruits.Remove(companionFruit);
+            companionFruit.GetComponent<PlayerMovement>().TogglePossession(true);
+
+            if (!companionTarget)
+            {
+                companionTarget = Instantiate<GameObject>(companionTargetPrefab);
+                companionTarget.transform.position = companionFruit.transform.position;
+            }
+        }
     }
 
     private void Update()
@@ -31,6 +54,16 @@ public class PlayerPossess : MonoBehaviour
         if (target & possessedFruit)
             target.transform.position = possessedFruit.transform.position;
 
+        if (companionTarget & companionFruit)
+            companionTarget.transform.position = companionFruit.transform.position;
+
+        if (Input.GetKeyDown(KeyCode.Space) & fruits.Count > 1)
+        {
+            possessedFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+            GameObject newPossessedFruit = GetNextFruit(possessedFruit);
+            if (newPossessedFruit)
+                OnPossess(newPossessedFruit);
+        }
     }
 
     public void OnRemoveFruit(GameObject self)
@@ -47,7 +80,7 @@ public class PlayerPossess : MonoBehaviour
         {
             Destroy(self);
             Destroy(target);
-            Debug.Log("End Game!");
+            Instantiate<UIDocument>(defeatScreenRef);
             return;
         }
 
@@ -55,11 +88,42 @@ public class PlayerPossess : MonoBehaviour
         if (self == possessedFruit)
         {
             GameObject newPossessedFruit = GetNextFruit(self);
-            if(possessedFruit)
-                OnPossess(possessedFruit);
+            if (newPossessedFruit)
+                OnPossess(newPossessedFruit);
         }
-       
+
         Destroy(self);
+    }
+
+    public void SetVictory(VictoryEvent victoryEvent)
+    {
+        switch (victoryEvent)
+        {
+            case VictoryEvent.SnakeDeath:
+                UnpossessFruits();
+                Instantiate<UIDocument>(victoryScreenRef);
+                return;
+
+            case VictoryEvent.FinalTile:
+                UnpossessFruits();
+                snake.SnakeDeath();
+                Instantiate<UIDocument>(victoryScreenRef);
+                return;
+
+
+            default: return;
+        }
+
+
+    }
+
+    public void UnpossessFruits()
+    {
+        if (companionFruit)
+            companionFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+
+        if (possessedFruit)
+            possessedFruit.GetComponent<PlayerMovement>().TogglePossession(false);
     }
 
     private void OnPossess(GameObject newFruit)
@@ -77,7 +141,7 @@ public class PlayerPossess : MonoBehaviour
 
         if (playerMovement)
         {
-            playerMovement.enabled = true;
+            playerMovement.TogglePossession(true);
             snake.SetNewTargetFruit(possessedFruit);
         }
 
@@ -93,10 +157,12 @@ public class PlayerPossess : MonoBehaviour
     {
         // ricerco nuovo frutto nella lista scegliendo quello piu vicino
         float minDistance = 1000f;
-        possessedFruit = null;
+        GameObject nextFruit = null;
 
         foreach (var item in fruits)
         {
+            if (item == lastFruit)
+                continue;
             Vector2 a = item.transform.position;
             Vector2 b = lastFruit.transform.position;
             float fruitDistance = Vector2.Distance(a, b);
@@ -104,10 +170,10 @@ public class PlayerPossess : MonoBehaviour
             if (fruitDistance < minDistance)
             {
                 minDistance = fruitDistance;
-                possessedFruit = item;
+                nextFruit = item;
             }
         }
-        return possessedFruit;
+        return nextFruit;
     }
 
 

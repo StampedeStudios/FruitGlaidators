@@ -28,10 +28,12 @@ public class SnakeHead : MonoBehaviour
 
     private float animLenght = 0.5f;
 
+    private AudioSource audioSource;
 
     private void Awake()
     {
         snakePieces = new List<SnakePiece>();
+        audioSource = GetComponent<AudioSource>();
 
         GameObject go = gameObject;
         if (snakePiecePrefab)
@@ -93,7 +95,10 @@ public class SnakeHead : MonoBehaviour
         {
             HealthHandler fruitHealth = other.gameObject.GetComponent<HealthHandler>();
             if (fruitHealth)
+            {
                 fruitHealth.Death();
+                audioSource.Play();
+            }
         }
 
         if (other.tag == "Snake")

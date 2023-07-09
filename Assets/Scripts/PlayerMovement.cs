@@ -14,9 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     private float elapsedTime;
 
+    private AudioSource audioSource;
+
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -90,6 +94,11 @@ public class PlayerMovement : MonoBehaviour
     private bool IsObstructed()
     {
         return Physics2D.Linecast(currentPosition, nextPosition, 3);
+    }
+
+    private void PlaySound()
+    {
+        audioSource.Play();
     }
 
 }

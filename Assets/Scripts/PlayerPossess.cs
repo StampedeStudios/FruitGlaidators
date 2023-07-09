@@ -39,7 +39,7 @@ public class PlayerPossess : MonoBehaviour
         if (companionFruit)
         {
             fruits.Remove(companionFruit);
-            companionFruit.GetComponent<PlayerMovement>().TogglePossession(true);
+            companionFruit.GetComponent<PlayerMovement>().SetPosssessionType(PossessionType.IsCompanion);
 
             if (!companionTarget)
             {
@@ -59,7 +59,7 @@ public class PlayerPossess : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) & fruits.Count > 1)
         {
-            possessedFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+            possessedFruit.GetComponent<PlayerMovement>().SetPosssessionType(PossessionType.None);
             GameObject newPossessedFruit = GetNextFruit(possessedFruit);
             if (newPossessedFruit)
                 OnPossess(newPossessedFruit);
@@ -68,6 +68,9 @@ public class PlayerPossess : MonoBehaviour
 
     public void OnRemoveFruit(GameObject self)
     {
+        if (self == companionFruit)
+            Destroy(companionTarget);
+
         // rimuovo frutto dalla lista
         if (fruits.Contains(self))
             fruits.Remove(self);
@@ -113,17 +116,15 @@ public class PlayerPossess : MonoBehaviour
 
             default: return;
         }
-
-
     }
 
     public void UnpossessFruits()
     {
         if (companionFruit)
-            companionFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+            companionFruit.GetComponent<PlayerMovement>().SetPosssessionType(PossessionType.None);
 
         if (possessedFruit)
-            possessedFruit.GetComponent<PlayerMovement>().TogglePossession(false);
+            possessedFruit.GetComponent<PlayerMovement>().SetPosssessionType(PossessionType.None);
     }
 
     private void OnPossess(GameObject newFruit)
@@ -141,7 +142,7 @@ public class PlayerPossess : MonoBehaviour
 
         if (playerMovement)
         {
-            playerMovement.TogglePossession(true);
+            playerMovement.SetPosssessionType(PossessionType.IsPlayer);
             snake.SetNewTargetFruit(possessedFruit);
         }
 

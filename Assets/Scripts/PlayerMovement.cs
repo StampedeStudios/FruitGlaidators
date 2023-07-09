@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isPossessed = false;
 
+    private PossessionType possessionType = PossessionType.None;
+
+    private GameObject companionFruit;
+
+    private bool hasPlayerInput = false;
+
 
     private void Awake()
     {
@@ -27,70 +33,113 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isPossessed)
+        switch (possessionType)
         {
+            case PossessionType.None:
+                Move();
+                return;
 
-            // movimento del player nelle 4 direzioni
-            if (Input.GetKeyDown(KeyCode.UpArrow) & !isMoving)
-            {
-                elapsedTime = 0;
-                currentPosition = transform.position;
-                nextPosition = currentPosition + Vector2.up * movingStep;
+            case PossessionType.IsPlayer:
+                // movimento del player nelle 4 direzioni
+                if (Input.GetKeyDown(KeyCode.UpArrow) & !isMoving)
+                {
+                    elapsedTime = 0;
+                    currentPosition = transform.position;
+                    nextPosition = currentPosition + Vector2.up * movingStep;
+
+                    if (IsObstructed())
+                        return;
+
+                    if (companionFruit)
+                        companionFruit.GetComponent<PlayerMovement>().UpdateCompanion(Vector2.up);
+
+                    isMoving = true;
+                    anim.SetTrigger("isJumping");
+                }
+
+                if (Input.GetKeyDown(KeyCode.DownArrow) & !isMoving)
+                {
+                    elapsedTime = 0;
+                    currentPosition = transform.position;
+                    nextPosition = currentPosition + Vector2.down * movingStep;
+
+                    if (IsObstructed())
+                        return;
+
+                    if (companionFruit)
+                        companionFruit.GetComponent<PlayerMovement>().UpdateCompanion(Vector2.down);
+
+                    isMoving = true;
+                    anim.SetTrigger("isJumping");
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow) & !isMoving)
+                {
+                    elapsedTime = 0;
+                    currentPosition = transform.position;
+                    nextPosition = currentPosition + Vector2.left * movingStep;
+
+                    if (IsObstructed())
+                        return;
+
+                    if (companionFruit)
+                        companionFruit.GetComponent<PlayerMovement>().UpdateCompanion(Vector2.left);
+
+                    isMoving = true;
+                    anim.SetTrigger("isJumping");
+                }
+
+                if (Input.GetKeyDown(KeyCode.RightArrow) & !isMoving)
+                {
+                    elapsedTime = 0;
+                    currentPosition = transform.position;
+                    nextPosition = currentPosition + Vector2.right * movingStep;
+
+                    if (IsObstructed())
+                        return;
+
+                    if (companionFruit)
+                        companionFruit.GetComponent<PlayerMovement>().UpdateCompanion(Vector2.right);
+
+                    isMoving = true;
+                    anim.SetTrigger("isJumping");
+                }
+                Move();
+                return;
+
+            case PossessionType.IsCompanion:
 
                 if (IsObstructed())
                     return;
 
-                isMoving = true;
-                anim.SetTrigger("isJumping");
-            }
+                if (hasPlayerInput & !isMoving)
+                {
+                    hasPlayerInput = false;
+                    isMoving = true;
+                    anim.SetTrigger("isJumping");
+                }
+                Move();
+                return;
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) & !isMoving)
-            {
-                elapsedTime = 0;
-                currentPosition = transform.position;
-                nextPosition = currentPosition + Vector2.down * movingStep;
-
-                if (IsObstructed())
-                    return;
-
-                isMoving = true;
-                anim.SetTrigger("isJumping");
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow) & !isMoving)
-            {
-                elapsedTime = 0;
-                currentPosition = transform.position;
-                nextPosition = currentPosition + Vector2.left * movingStep;
-
-                if (IsObstructed())
-                    return;
-
-                isMoving = true;
-                anim.SetTrigger("isJumping");
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow) & !isMoving)
-            {
-                elapsedTime = 0;
-                currentPosition = transform.position;
-                nextPosition = currentPosition + Vector2.right * movingStep;
-
-                if (IsObstructed())
-                    return;
-
-                isMoving = true;
-                anim.SetTrigger("isJumping");
-            }
+            default: return;
         }
+    }
 
+    public void UpdateCompanion(Vector2 direction)
+    {
+        elapsedTime = 0;
+        currentPosition = transform.position;
+        nextPosition = currentPosition + direction * movingStep;
+        hasPlayerInput = true;
+    }
+
+    private void Move()
+    {
         elapsedTime = Mathf.Clamp(elapsedTime + Time.deltaTime, 0f, animLenght);
 
         if (isMoving)
-        {
-            // lerp della posizione 
             transform.position = Vector2.Lerp(currentPosition, nextPosition, elapsedTime / animLenght);
-        }
+
         if (elapsedTime == animLenght)
         {
             isMoving = false;
@@ -110,6 +159,14 @@ public class PlayerMovement : MonoBehaviour
     public void TogglePossession(bool possessActive)
     {
         isPossessed = possessActive;
+    }
+
+    public void SetPosssessionType(PossessionType newPossessionType)
+    {
+        possessionType = newPossessionType;
+
+        if (possessionType == PossessionType.IsPlayer)
+            companionFruit = GameObject.FindObjectOfType<PlayerPossess>().companionFruit;
     }
 
 }

@@ -8,11 +8,16 @@ public class PlayerPossess : MonoBehaviour
 
     public GameObject possessedFruit;
 
+    public GameObject companionFruit;
+
     private SnakeHead snake;
 
     private GameObject target;
 
+    private GameObject companionTarget;
+
     public GameObject targetPrefab;
+    public GameObject companionTargetPrefab;
 
     public UIDocument defeatScreenRef;
 
@@ -27,12 +32,27 @@ public class PlayerPossess : MonoBehaviour
     {
         // possesso frutto di partenza
         OnPossess(possessedFruit);
+
+        if (companionFruit)
+        {
+            fruits.Remove(companionFruit);
+            companionFruit.GetComponent<PlayerMovement>().enabled = true;
+
+            if (!companionTarget)
+            {
+                companionTarget = Instantiate<GameObject>(companionTargetPrefab);
+                companionTarget.transform.position = companionFruit.transform.position;
+            }
+        }
     }
 
     private void Update()
     {
         if (target & possessedFruit)
             target.transform.position = possessedFruit.transform.position;
+
+        if (companionTarget)
+            companionTarget.transform.position = companionFruit.transform.position;
 
         if (Input.GetKeyDown(KeyCode.Space) & fruits.Count > 1)
         {

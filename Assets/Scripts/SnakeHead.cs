@@ -168,8 +168,7 @@ public class SnakeHead : MonoBehaviour
 
     public void SetNewTargetFruit(GameObject fruit)
     {
-        if (fruit)
-            targetFruit = fruit;
+        targetFruit = fruit;
     }
 
     private void ChoseDirection()

@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
         targetPosition = closedPosition;
     }
 
-    public void ToggleDoorStatus(bool isOpen)
+    public bool ToggleDoorStatus(bool isOpen)
     {
         if (isOpen)
         {
@@ -29,12 +29,12 @@ public class Door : MonoBehaviour
         else
         {
             if (IsObstructed())
-                return;
+                return false;
             doorCollider.enabled = true;
             audioSource.Play();
             targetPosition = closedPosition;
         }
-
+        return true;
     }
 
     private void Update()

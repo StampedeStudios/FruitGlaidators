@@ -22,7 +22,7 @@ public class PlayerPossess : MonoBehaviour
     public UIDocument defeatScreenRef;
     public UIDocument victoryScreenRef;
 
-
+    private float timeToRestart = 2f;
 
     private void Awake()
     {
@@ -64,6 +64,21 @@ public class PlayerPossess : MonoBehaviour
             if (newPossessedFruit)
                 OnPossess(newPossessedFruit);
         }
+
+        // If R is hold for 2 seconds, restart the game
+        if (Input.GetKey(KeyCode.R))
+        {
+            timeToRestart -= Time.deltaTime;
+            if (timeToRestart <= 0)
+            {
+                UnpossessFruits();
+                snake.SetNewTargetFruit(null);
+                Instantiate<UIDocument>(defeatScreenRef);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+            timeToRestart = 2f;
     }
 
     public void OnRemoveFruit(GameObject self)

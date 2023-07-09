@@ -101,8 +101,19 @@ public class SnakeHead : MonoBehaviour
             }
         }
 
+        if (other.tag == "FakeFruit")
+        {
+            FakeFruit fakeFruit = other.gameObject.GetComponent<FakeFruit>();
+            if (fakeFruit)
+            {
+                fakeFruit.Death();
+            }
+        }
+
         if (other.tag == "Snake")
         {
+            isMoving=false;
+            targetFruit=null;
             Instantiate<UIDocument>(victoryScreenRef);
         }
     }
@@ -160,8 +171,6 @@ public class SnakeHead : MonoBehaviour
     {
         float evaluateDistance = 0;
         float prevDistance = 1000;
-
-
 
         Vector2 evaluatePosition;
 

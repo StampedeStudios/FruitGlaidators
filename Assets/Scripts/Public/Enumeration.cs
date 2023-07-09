@@ -5,3 +5,9 @@ public enum VictoryEvent
     FinalTile
 }
 
+public enum PossessionType
+{
+    None,
+    IsPlayer,
+    IsCompanion
+}

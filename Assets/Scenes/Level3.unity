@@ -4247,18 +4247,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinalTile
       objectReference: {fileID: 0}
-    - target: {fileID: 8206830709405489545, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8206830709405489545, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8206830709405489545, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 2013177665
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6f72182dff1b6649be90e445b40f067, type: 3}
 --- !u!4 &1497023172 stripped

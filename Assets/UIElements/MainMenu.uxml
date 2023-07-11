@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIElements/UIStyle.uss?fileID=7433441132597879392&amp;guid=4db63e8e6b616b9448e584fb3a4636d9&amp;type=3#UIStyle" />
     <ui:VisualElement style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(17, 15, 15, 0.4);">
-        <ui:VisualElement name="MiddleSection" style="align-items: center; justify-content: center; height: 100%;">
-            <ui:VisualElement name="Container" style="justify-content: flex-start; align-items: stretch; height: 100%;">
+        <ui:VisualElement name="MiddleSection" style="align-items: stretch; justify-content: center; height: 100%;">
+            <ui:VisualElement name="Container" style="justify-content: center; align-items: center; height: 100%;">
                 <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Sprites/Title.png?fileID=2800000&amp;guid=2d2e4bb6493dc9648b5a913aa8d0454b&amp;type=3#Title&apos;); width: 400px; height: 300px; justify-content: space-between;" />
                 <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayBtn" class="menu-button" style="width: 100%; align-items: stretch;" />
             </ui:VisualElement>

@@ -22,7 +22,7 @@ public class PlayerPossess : MonoBehaviour
     public UIDocument defeatScreenRef;
     public UIDocument victoryScreenRef;
 
-    private float timeToRestart = 2f;
+    private float timeToRestart = 1f;
 
     private void Awake()
     {

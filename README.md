@@ -1,12 +1,12 @@
-# GMTK-2023
+# Fruit Gladiators
 
-[![Build and Deploy of GMTK-2023](https://github.com/StampedeStudios/GMTK-2023/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/StampedeStudios/GMTK-2023/actions/workflows/build-and-deploy.yml)
+[![Build and Deploy of Fruit Gladiators](https://github.com/StampedeStudios/FruitGlaidators/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/StampedeStudios/FruitGlaidators/actions/workflows/build-and-deploy.yml)
 
 
 This repository contains the Unity project for GMTK 2023.
 
 ## Gameplay
-Since the theme was **Roles Reversed**, we built a reversed snake where you control fruits instead of the snake and the mission is to save as much fruit as you are able to.
+Since the theme was **Roles Reversed**, we built a reversed snake where you control fruits instead of the snake and the mission is to save as much fruit as you can.
 
 ### How to play
 Use **arrow keys** to move the selected fruit and **space** to change the currently active character. If things get too tough, hold **R** to reset the level.
@@ -44,4 +44,4 @@ There are no current plans to work on this project any further but if ever someo
 - [ ] Add more levels. 5 playable levels are currently implemented, however, there's the potential, with the currently implemented mechanics, to design a few more.
 - [ ] Add music in the background
 - [ ] Add a tutorial section, in the game jam version we assumed that everyone knew the famous game: *Snake*. We were wrong.
-- [ ] Add sound effects when a character is close to being ate
+- [ ] Add sound effects when a character is close to being eaten
